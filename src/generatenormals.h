@@ -1,11 +1,15 @@
 #ifndef GENERATENORMALS_H
 #define GENERATENORMALS_H
+#include <glm/vec3.hpp>
+#include <glm/vec2.hpp>
+#include <memory>
 
+class PngFile;
+class DepthFile;
 
-class GenerateNormals
-{
-public:
-	GenerateNormals();
-};
+void GenerateNormals(PngFile & out, DepthFile & in);
+void GradientFromVariable(glm::vec2 * gradient,  const float * distance, const uint8_t * platform, uint32_t width, uint32_t height);
+void BlurGradient(std::unique_ptr<glm::vec2[]> & gradient, const uint8_t * platform,  uint32_t width, uint32_t height);
+void PngFromGradientField(PngFile & r, glm::vec2 * gradient, glm::ivec2 size);
 
 #endif // GENERATENORMALS_H

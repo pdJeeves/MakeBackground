@@ -1,11 +1,17 @@
 #ifndef BLURHEIGHTMAP_H
 #define BLURHEIGHTMAP_H
+#include <vector>
 
+class PngFile;
+class DepthFile;
+struct BlurStage;
 
-class BlurHeightMap
+void BlurHeightMap(PngFile & dst, PngFile & src, DepthFile & depth, std::vector<BlurStage> const& stages);
+
+enum
 {
-public:
-	BlurHeightMap();
+	kCornerMask = 0x55,
+	kSideMask   = 0xAA,
 };
 
 #endif // BLURHEIGHTMAP_H
